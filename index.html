@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuvo Jonmodin! 🎂</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fed6e3 0%, #a8c1ef 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Background Balloon Animation */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 65px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            bottom: -100px;
+            padding-bottom: 20px;
+            opacity: 0.7;
+            animation: float Up 8s infinite linear;
+        }
+
+        .balloon::after {
+            content: "▲";
+            font-size: 10px;
+            position: absolute;
+            bottom: 12px;
+            left: 20px;
+            color: inherit;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+        }
+
+        /* Main Card Container */
+        .card-container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .wish-btn {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.4);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .wish-btn:hover {
+            transform: scale(1.1);
+            background-color: #ff6b81;
+        }
+
+        /* Birthday Card Design */
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            max-width: 400px;
+            width: 90%;
+            display: none;
+            transform: scale(0.7);
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .card.show {
+            display: block;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .cake {
+            font-size: 60px;
+            animation: bounce 2s infinite;
+        }
+
+        h1 {
+            color: #ff4757;
+            margin: 20px 0 10px;
+            font-size: 28px;
+        }
+
+        p {
+            color: #57606f;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Balloons -->
+    <div class="balloon" style="left: 10%; background-color: #ff4757; animation-delay: 0s;"></div>
+    <div class="balloon" style="left: 30%; background-color: #2ed573; animation-delay: 2s; width: 60px; height: 75px;"></div>
+    <div class="balloon" style="left: 55%; background-color: #1e90ff; animation-delay: 1s;"></div>
+    <div class="balloon" style="left: 75%; background-color: #ffa502; animation-delay: 4s; width: 55px; height: 70px;"></div>
+    <div class="balloon" style="left: 85%; background-color: #9b59b6; animation-delay: 3s;"></div>
+
+    <!-- Main Content -->
+    <div class="card-container">
+        <button class="wish-btn" id="magicBtn">Ekhane Click Koro! ✨</button>
+
+        <div class="card" id="birthdayCard">
+            <div class="cake">🎂🎉</div>
+            <!-- Apni chaile nicher nam ebong lekha bodle dite paren -->
+            <h1>Shuvo Jonmodin!</h1> 
+            <p>Ajker ei bishes dine tomar jonno roilo onek onek shubhekcha o bhalobasha. Jiboner protiti podokkhep jeno shofolota o anonde bhore uthe! ❤️</p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Live Interaction -->
+    <script>
+        const btn = document.getElementById('magicBtn');
+        const card = document.getElementById('birthdayCard');
+
+        btn.addEventListener('click', () => {
+            // Button lukiye card dekhano
+            btn.style.display = 'none';
+            card.classList.add('show');
+            
+            // Background-e aro kichu balloon tiri kora instant
+            for(let i = 0; i < 15; i++) {
+                createExtraBalloon();
+            }
+        });
+
+        function createExtraBalloon() {
+            const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#9b59b6', '#ff6b81'];
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + '%';
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.animationDelay = Math.random() * 2 + 's';
+            balloon.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            document.body.appendChild(balloon);
+        }
+    </script>
+</body>
+</html>
